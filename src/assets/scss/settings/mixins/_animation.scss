@@ -1,0 +1,71 @@
+// Transitions
+// TODO speed slowest, slower, slow, normal, quick, quicker, quickest
+@mixin transition($speed: .15s, $ease: ease-in-out) {
+  transition: all $speed $ease;
+}
+
+@mixin transitioning($transition...) {
+  transition: $transition;
+}
+
+@mixin rotate($rotate, $axis: null) {
+  @if $axis {
+    transform: rotate#{to-upper-case($axis)}($rotate);
+  } @else {
+    transform: rotate($rotate);
+  }
+}
+
+@mixin scale($scale) {
+  transform: scale($scale);
+}
+
+@mixin perspective($perspective) {
+  transform: perspective($perspective);
+}
+
+@mixin translate($x, $y: null, $z: null) {
+  @if $x == 'Y' {
+    transform: translateY($y);
+  } @else if $z {
+    transform: translate3d($x, $y, $z);
+  } @else if $y {
+    transform: translate($x, $y);
+  } @else {
+    transform: translateX($x);
+  }
+}
+
+@mixin animate($name, $speed: .2s, $ease: ease-in, $delay: .5s, $when: both) {
+  animation: $name $speed $ease $delay $when;
+}
+
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin spin($direction: clockwise) {
+  @if $direction == clockwise {
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  @else if $direction == counterclockwise {
+    @keyframes spin-reverse {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+  }
+}

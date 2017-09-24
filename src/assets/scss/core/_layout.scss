@@ -1,0 +1,172 @@
+
+// Base
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+
+// Container
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @include breakpoint(large) {
+		padding: 0;
+	}
+
+	@include breakpoint(medium) {
+		width: $container-tablet;
+	}
+
+	@include breakpoint(large) {
+		width: $container-normal;
+	}
+
+	@include breakpoint(xlarge) {
+		width: $container-wide;
+	}
+
+  @include breakpoint(xxlarge) {
+		width: $container-large;
+	}
+}
+
+
+// Row
+.#{$grid-row-name} {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Nested Row
+.#{$grid-column-name} .#{$grid-row-name} {
+  //margin-left: -10px;
+  //margin-right: -10px;
+}
+
+
+// Box
+.#{$grid-column-name} {
+  padding: 0 ($grid-gutter-width / 2);
+
+  @include breakpoint(xsmall) {
+    flex: 0 0 100%;
+
+    &.#{$grid-column-name}--half {
+      flex: 0 0 50%;
+    }
+  }
+
+  @include breakpoint(small) {
+    flex: 1;
+    padding: 0 $grid-gutter-width;
+
+    &.#{$grid-column-name}--1,
+    &.#{$grid-column-name}--2,
+    &.#{$grid-column-name}--4,
+    &.#{$grid-column-name}--8,
+    &.#{$grid-column-name}--6th,
+    &.#{$grid-column-name}--half {
+      flex: 0 0 50%;
+    }
+
+    &.#{$grid-column-name}--8th,
+    &.#{$grid-column-name}--4th {
+      flex: 0 0 25%;
+    }
+
+    &.#{$grid-column-name}--7 {
+      flex: 0 0 100%;
+    }
+  }
+
+  @include breakpoint(large) {
+
+    @for $i from 1 through $grid-column-count {
+      &.#{$grid-column-name}--#{$i} {
+        flex: 0 0 (100% / $grid-column-count * $i);
+      }
+    }
+
+    &.#{$grid-column-name}--8th {
+      flex: 0 0 (100% / 8);
+    }
+
+    &.#{$grid-column-name}--6th {
+      flex: 0 0 (100% / 6);
+    }
+
+    &.#{$grid-column-name}--4th {
+      flex: 0 0 25%;
+    }
+
+    &.#{$grid-column-name}--3rd {
+      flex: 0 0 (100% / 3);
+    }
+
+    &.#{$grid-column-name}--half {
+      flex: 0 0 50%;
+    }
+
+    &.#{$grid-column-name}--2-3rd {
+      flex: 0 0 (100% / 3 * 2);
+    }
+
+    &.#{$grid-column-name}--3-4th {
+      flex: 0 0 75%;
+    }
+
+    &.#{$grid-column-name}--full {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+
+// Box Helpers
+.box {
+  padding: 0 12px;
+}
+
+.box--reverse {
+  flex-direction: row-reverse;
+}
+
+.box--center {
+  justify-content: center;
+}
+
+.box--space-between {
+  justify-content: space-between;
+}
+
+.box--vertical-center {
+  align-items: center;
+}
+
+.box--stretch {
+  align-items: stretch;
+}
+
+.box--no-gutters {
+
+  .#{$grid-column-name} {
+    padding: 0;
+  }
+}
+
+
+// Box Offset
+@include breakpoint(medium) {
+  @for $i from 1 through $grid-column-count - 1 {
+    &.offset--#{$i} {
+      margin-left: 100% / $grid-column-count * $i;
+    }
+  }
+}

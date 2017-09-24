@@ -50,7 +50,14 @@ exports.cssLoaders = function (options) {
     postcss: generateLoaders(),
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    scss: generateLoaders('sass').concat({
+      loader: 'sass-resources-loader',
+      options: {
+        // Include this file in every component built
+        // https://vue-loader.vuejs.org/en/configurations/pre-processors.html
+        resources: path.resolve(__dirname, '../src/assets/scss/settings/_index.scss')
+      }
+    }),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
