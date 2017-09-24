@@ -1,0 +1,82 @@
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin box-sizing($box: border-box) {
+  box-sizing: $box;
+}
+
+@mixin triangle($size, $color, $direction: down) {
+  position: absolute;
+  @include size(0);
+  content: '';
+  border: {
+    width: $size;
+    style: solid;
+    color: transparent;
+  };
+
+  @if $direction == up {
+    border: {
+      bottom-color: $color;
+    }
+  }
+
+  @if $direction == down {
+    border: {
+      top-color: $color;
+    }
+  }
+
+  @if $direction == left {
+    border: {
+      right-color: $color;
+    }
+  }
+
+  @if $direction == right {
+    border: {
+      left-color: $color;
+    }
+  }
+}
+
+%clearfix {
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+    flex-basis: 0;
+    order: 1;
+  }
+}
+
+@mixin gradient($origin, $start, $stop) {
+  background-image: linear-gradient(to $origin, $start 0%, $stop 100%);
+}
+
+@mixin backface($backface: hidden) {
+  backface-visibility: $backface;
+}
+
+@function z($level) {
+  $zindex: (
+    absolute: 10,
+    top: 9,
+    middle: 5,
+    base: 1,
+    hide: -1
+  );
+  @return map-get($zindex, $level);
+}
+
+@mixin visible($state) {
+  @if $state == visible {
+    opacity: 1;
+    visibility: visible;
+  } @else if $state == hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

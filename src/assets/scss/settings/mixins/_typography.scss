@@ -1,0 +1,41 @@
+@mixin font-face-mixin($font-name, $font-path, $font-file, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    font: {
+      family: '#{$font-name}';
+      weight: $font-weight;
+      style: $font-style;
+    }
+    src: url('#{$font-path}/#{$font-file}.woff2') format('woff2'),
+      url('#{$font-path}/#{$font-file}.woff') format('woff');
+  }
+}
+
+
+// REM Units with px fallback (assumes html is set to font-size: 62.5%)
+@mixin font-size($value: 1.6) {
+  // scss-lint:disable DuplicateProperty
+  font-size: $value + px;
+  font-size: ($value / 10) + rem;
+}
+
+
+@mixin text-overflow($type: ellipsis) {
+  text-overflow: $type;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin font($weight, $style: null) {
+  @if $weight == light {
+    font-weight: 300;
+  }
+  @if $weight == reg {
+    font-weight: 400;
+  }
+  @if $weight == bold {
+    font-weight: 700;
+  }
+  @if $style {
+    font-style: $style;
+  }
+}
