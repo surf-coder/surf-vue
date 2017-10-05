@@ -25,7 +25,19 @@
 }
 
 @mixin translate($x, $y: null, $z: null) {
-  @if $x == 'Y' {
+  @if $y == null {
+    transform: translateX($x);
+  } @else if $z == null {
+    @if $x == 0 {
+      transform: translateY($y);
+    } @else {
+      transform: translate($x, $y);
+    }
+  } @else {
+    transform: translate3d($x, $y, $z);
+  }
+
+  /* @if $x == 'Y' {
     transform: translateY($y);
   } @else if $z {
     transform: translate3d($x, $y, $z);
@@ -33,7 +45,7 @@
     transform: translate($x, $y);
   } @else {
     transform: translateX($x);
-  }
+  } */
 }
 
 @mixin animate($name, $speed: .2s, $ease: ease-in, $delay: .5s, $when: both) {

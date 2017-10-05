@@ -1,3 +1,13 @@
+$breakpoints: (
+  xsmall: 599px,
+  small: 600px,
+  medium: 768px,
+  large: 960px,
+  xlarge: 1024px,
+  xxlarge : 1280px,
+  xxxlarge: 1800px,
+) !default;
+
 @mixin breakpoint($size) {
   @if $size == xsmall {
     @media (max-width: #{map-get($breakpoints, xsmall)}) {
