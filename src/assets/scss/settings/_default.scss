@@ -3,7 +3,7 @@ $primary-color: $blue-11 !default;
 $secondary-color: $red-10 !default;
 $primary-background: $shade-2 !default;
 
-$primary-font: Helvetica Neue, HelveticaNeue, Helvetica, sans-serif !default;
+$primary-font: 'Courgette', cursive, Helvetica Neue, HelveticaNeue, Helvetica, sans-serif !default;
 
 $primary-font-size: 16px !default;
 $primary-font-weight: 400 !default;
@@ -40,9 +40,10 @@ $breakpoints: (
   small: 600px,
   medium: 768px,
   large: 960px,
-  xlarge: 1280px,
-  xxlarge : 1800px
-) !default;
+  xlarge: 1024px,
+  xxlarge : 1280px,
+  xxxlarge: 1800px,
+);
 
 // Container layout
 $container-small-tablet: 600px;

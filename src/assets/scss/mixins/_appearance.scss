@@ -60,9 +60,13 @@
   backface-visibility: $backface;
 }
 
+@mixin z($level) {
+  z-index: z(front);
+}
+
 @function z($level) {
   $zindex: (
-    absolute: 10,
+    front: 10,
     top: 9,
     middle: 5,
     base: 1,
@@ -72,10 +76,10 @@
 }
 
 @mixin visible($state) {
-  @if $state == visible {
+  @if $state == true {
     opacity: 1;
     visibility: visible;
-  } @else if $state == hidden {
+  } @else if $state == false {
     opacity: 0;
     visibility: hidden;
   }

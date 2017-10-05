@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <header-bar></header-bar>
     <router-view></router-view>
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
   </div>
 </template>
 
 <script>
+import headerBar from './components/header-bar/header-bar'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    headerBar
+  }
 }
 </script>
-
-
-<style lang="scss">
-</style>

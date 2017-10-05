@@ -55,7 +55,7 @@ exports.cssLoaders = function (options) {
       options: {
         // Include this file in every component built
         // https://vue-loader.vuejs.org/en/configurations/pre-processors.html
-        resources: path.resolve(__dirname, '../src/assets/scss/settings/_index.scss')
+        resources: path.resolve(__dirname, '../src/assets/scss/_common.scss')
       }
     }),
     stylus: generateLoaders('stylus'),
