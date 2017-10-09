@@ -3,7 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './assets/scss/_index.scss'
+import SurfVue from './components/index';
+import samples from './samples/index';
+
+Vue.use(SurfVue);
+Vue.use(samples);
+
+// import './assets/scss/_index.scss'
 
 Vue.config.productionTip = false
 
